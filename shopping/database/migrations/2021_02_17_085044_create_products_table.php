@@ -17,9 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('alias');
-            $table->interger('price');
-            $table->interger('quatity');
-            
+            $table->integer('price');
+            $table->integer('quatity');
+            $table->integer('categoryId');
+            $table->integer('viewcount');
+            $table->boolean('homeflag');
+            $table->boolean('hotflag');
             $table->timestamps();
         });
     }

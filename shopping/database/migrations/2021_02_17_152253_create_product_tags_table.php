@@ -15,6 +15,8 @@ class CreateProductTagsTable extends Migration
     {
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
+            $table->integer('productId');
+            $table->integer('tagId');
             $table->timestamps();
         });
     }
