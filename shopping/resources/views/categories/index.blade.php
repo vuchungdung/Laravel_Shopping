@@ -28,14 +28,20 @@
                 <div class="card-header">
                   <h3 class="card-title">Danh sách danh mục</h3>
                 </div>
-            <!-- /.card-header -->
+                <div class="card-header btn-group-sm">
+                    <div style="display: flex;">
+                        <input type="text" style="width: 300px;" name="" class="form-control" placeholder="Nhập nội dung tìm kiếm">
+                        <button type="button" class="btn btn-primary">Tìm kiếm</button>
+                        <a style="margin-left: 10px" href="{{ route('categories.create') }}" class="btn btn-warning">Thêm mới</a>
+                    </div>                   
+                </div>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Tên danh mục</th>
                                 <th>SEO</th>
-                                <th>Thao tác</th>
+                                <th style="width: 12%;">Thao tác</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -44,7 +50,8 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->alias }}</td>
                                 <td>
-                                    
+                                    <a href="" class="btn btn-sm btn-success">Sửa</a>
+                                    <a href="" class="btn btn-sm btn-danger">Xóa</a>
                                 </td>
                             </tr>
                         @endforeach                    
@@ -53,7 +60,7 @@
                         <tr>
                             <th>Tên danh mục</th>
                             <th>SEO</th>
-                            <th>Thao tác</th>
+                            <th style="width: 12%;">Thao tác</th>
                         </tr>
                     </tfoot>
                   </table>

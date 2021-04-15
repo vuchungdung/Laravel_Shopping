@@ -25,5 +25,9 @@ Route::prefix('categories')->group(function () {
     	'as'=>'categories.index',
     	'uses'=>'App\Http\Controllers\CategoryController@index'
     ]);
+    Route::get('/create', [
+    	'as'=>'categories.create',
+    	'uses'=>'App\Http\Controllers\CategoryController@create'
+    ]);
 });
 
