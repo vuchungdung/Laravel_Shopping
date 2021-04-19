@@ -29,5 +29,9 @@ Route::prefix('categories')->group(function () {
     	'as'=>'categories.create',
     	'uses'=>'App\Http\Controllers\CategoryController@create'
     ]);
+    Route::post('/save', [
+    	'as'=>'categories.save',
+    	'uses'=>'App\Http\Controllers\CategoryController@save'
+    ]);
 });
 

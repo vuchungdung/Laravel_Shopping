@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use Exception;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -23,12 +24,27 @@ class CategoryController extends Controller
     	return view('categories.create',['htmlSelect' => $htmlSelect]);
     }
 
+	public function save(Request $request){
+		try{
+			$this->category->create([
+				'name'=>$request->name,
+				'parentId'=>$request->parentId,
+				'alias'=>Str::slug($request->name,'-')
+			]);
+			return redirect('/categories/create')->with('status', 'Thêm thành công!');
+		}
+		catch(Exception $e){
+			report($e);
+			return redirect('/categories/create')->with('status', 'Thêm thất bại!');
+		}
+	}
+
     function CategoryRecusive($id, $text =''){
     	$datas = Category::all();
     	foreach ($datas as $value) {
-    		if($value['parent_id'] == $id){
-    			$this->htmlSelect .= '<option value="' . $value['parent_id'] . '">' . $text . $value['name'] . '</option>';
-    			$this->CategoryRecusive($value['id'],'-');
+    		if($value['parentId'] == $id){
+    			$this->htmlSelect .= '<option value="' . $value['id'] . '">' . $text . $value['name'] . '</option>';
+    			$this->CategoryRecusive($value['id'],$text . '--');
     		}
     	}
     	return $this->htmlSelect;
