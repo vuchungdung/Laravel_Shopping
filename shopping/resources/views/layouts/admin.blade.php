@@ -14,7 +14,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('admin_template/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="{{ asset('admin_template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin_template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+
   <link rel="stylesheet" href="{{ asset('admin_template/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin_template/plugins/summernote/summernote-bs4.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -43,7 +49,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('admin_template/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin_template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('admin_template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin_template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin_template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('admin_template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin_template/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('admin_template/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
 </body>
 </html>
