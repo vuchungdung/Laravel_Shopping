@@ -13,10 +13,17 @@ class Product extends Model
         'id',
         'name',
         'price',
+        'categoryId',
+        'ownerId',
+        'homeflag',
+        'hotflag',
         'alias',
-        'quantity',
+        'images',
+        'viewcount',
+        'quatity',
+        'description',
         'created_at'
     ];
 
-    protected $table ='categories';
+    protected $table ='products';
 }

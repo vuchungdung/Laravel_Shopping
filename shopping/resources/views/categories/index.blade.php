@@ -28,7 +28,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Danh sách danh mục</h3>
                     <a style="margin-left: 20px;" href="{{ route('categories.create') }}" class="btn btn-warning">Thêm mới</a>
-                </div>            
+                </div>
                 @if (session('status'))
                 <p class="text-warning" style="margin:0px;padding:0px;margin-left:20px">
                     {{ session('status') }}
@@ -48,8 +48,9 @@
                             @foreach($datas as $item)
                             <tr>
                                 <td>{{ $item->name }}</td>
+
                                 <td>{{ $item->alias }}</td>
-                                <td>{{ $item->created_at }}</td>
+                                <td>{{ date("d-m-Y", strtotime($item->created_at)) }}</td>
                                 <td>
                                     <a href="{{ route('categories.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
                                     <a href="{{ route('categories.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger">Xóa</a>

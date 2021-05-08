@@ -20,7 +20,9 @@
                             <li class="nav-link">
                                 <a href="#" class="parent">Trang chủ</a>                                
                             </li>
-
+                            <li >
+                                <a href="#" class="parent">Sản phẩm</a>                                
+                            </li>
                             <li>
                                 <a href="contact.html" class="parent">Liên hệ</a>
                             </li>

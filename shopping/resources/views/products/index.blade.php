@@ -42,23 +42,38 @@
                                 <th>Hình ảnh</th>
                                 <th>Số lượng còn</th>
                                 <th>Đơn giá</th>
-                                <th>Nhà cung cấp</th>
-                                <th>Lượt xem</th>
                                 <th>Hiển thị</th>
                                 <th>Hot</th>
                                 <th style="width: 12%;">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($datas as $item)
+                            <tr>
+                                <td>{{ $item->name }}</td>
+                                <td>
+                                    <img src="/images/{{ $item->images }}" style="width:100px;height:80px" alt="">
+                                </td>
+                                <td>{{ $item->quatity }}</td>
+                                <td style="font-weight:600;color:red">{{ number_format($item->price) }} đồng</td>
+                                <td>
+                                    <input type="checkbox" value="{{ $item->homeflag }}" name="" id="">
+                                </td>
+                                <td>
+                                    <input type="checkbox" value="{{ $item->hotflag }}" name="" id="">
+                                </td>
+                                <td>
+                                    <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
+                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                         <tfoot>
                             <th>Tên</th>
                             <th>Hình ảnh</th>
                             <th>Số lượng còn</th>
                             <th>Đơn giá</th>
-                            <th>Nhà cung cấp</th>
-                            <th>Lượt xem</th>
                             <th>Hiển thị</th>
                             <th>Hot</th>
                             <th style="width: 12%;">Thao tác</th>

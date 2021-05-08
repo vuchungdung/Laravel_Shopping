@@ -19,5 +19,4 @@
                 @endif
         </li>
     @endforeach
-    <li class="more item">Xem thêm</li>
 </ul>

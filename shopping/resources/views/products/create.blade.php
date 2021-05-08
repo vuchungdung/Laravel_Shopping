@@ -29,7 +29,7 @@
                     <h3 class="card-title">Thêm mới sản phẩm</h3>
                 </div>
                 <div class="card-body">
-                    <form role="form" action="{{ route('categories.save') }}" method="post">
+                    <form role="form" action="{{ route('products.save') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body" style="padding: 0px;">
                             <div class="form-group">
@@ -47,13 +47,13 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Số lượng</label>
-                                            <input type="int" name="price" class="form-control" placeholder="Nhập đơn giá sản phẩm">
+                                            <input type="int" name="quatity" class="form-control" placeholder="Nhập đơn giá sản phẩm">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Hình ảnh</label>
-                                            <input type="file" name="price" class="form-control" placeholder="Chọn hình ảnh">
+                                            <input type="file" name="images" class="form-control" placeholder="Chọn hình ảnh">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nhà cung cấp</label>
-                                            <input type="int" name="price" class="form-control" placeholder="Nhập đơn giá sản phẩm">
+                                            <select class="form-control" name="ownerId">
+                                                <option value="0">Chọn danh mục</option>
+                                                {!! $htmlOwner !!}
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -78,20 +81,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Hình ảnh(khác)</label>
-                                <input type="file" name="price" class="form-control" placeholder="Chọn hình ảnh">
+                                <textarea class="textarea" name="description" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>
                             <div class="form-group">
-                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="" id=""> Hiển thị </br>
-                                <input type="checkbox" name="" id=""> Sản phẩm hot </br>
+                                <input type="checkbox" name="homeflag" id=""> Hiển thị </br>
+                                <input type="checkbox" name="hotflag" id=""> Sản phẩm hot </br>
                             </div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary">Thêm mới sản phẩm</button>
-                            <a href="{{ route('categories.index') }}" class="btn btn-default">Quay lại</a>
+                            <a href="{{ route('products.index') }}" class="btn btn-default">Quay lại</a>
                         </div>
                     </form>
                     @if (session('status'))

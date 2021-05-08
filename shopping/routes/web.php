@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', action:'App\Http\Controllers\HomeController@index');
-
+Route::get('/detail/{id}', action:'App\Http\Controllers\HomeController@detail');
 Route::get('/admin', function () {
     return view('admin');
 });
