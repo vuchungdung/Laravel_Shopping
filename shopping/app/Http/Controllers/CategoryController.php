@@ -27,7 +27,7 @@ class CategoryController extends Controller
 	public function save(Request $request){
 		try{
 			$this->category->create([
-				'name'=>$request->name,
+				'category_name'=>$request->name,
 				'parentId'=>$request->parentId,
 				'alias'=>Str::slug($request->name,'-')
 			]);
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     	$datas = Category::all();
     	foreach ($datas as $value) {
     		if($value['parentId'] == $parentid){
-    			$this->htmlSelect .= '<option value="' . $value['id'] . '">' . $text . $value['name'] . '</option>';
+    			$this->htmlSelect .= '<option value="' . $value['id'] . '">' . $text . $value['category_name'] . '</option>';
     			$this->CategoryRecusive($value['id'],$text . '--');
     		}
     	}
@@ -54,10 +54,10 @@ class CategoryController extends Controller
 		$datas = Category::where('parentId',$parentid)->get();
 		foreach($datas as $value){
 			if($value->id == $curentparentid){
-				$this->htmlSelect .= '<option selected value="' . $value['id'] . '">' . $submark . $value['name'] . '</option>';
+				$this->htmlSelect .= '<option selected value="' . $value['id'] . '">' . $submark . $value['category_name'] . '</option>';
 			}
 			else{
-				$this->htmlSelect .= '<option value="' . $value['id'] . '">' . $submark . $value['name'] . '</option>';
+				$this->htmlSelect .= '<option value="' . $value['id'] . '">' . $submark . $value['category_name'] . '</option>';
 			}
 			$this->CategoryRecusiveEdit($curentparentid, $value['id'], $submark . '--');
 		}
@@ -80,7 +80,7 @@ class CategoryController extends Controller
 	public function saveedit($id,Request $request){
 		try{
 			$this->category->find($id)->update([
-				'name'=>$request->name,
+				'category_name'=>$request->name,
 				'parentId'=>$request->parentId,
 				'alias'=>Str::slug($request->name,'-')
 			]);

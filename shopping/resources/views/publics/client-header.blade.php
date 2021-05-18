@@ -7,7 +7,7 @@
                 <!-- logo -->
                 <div class="col-sm-2 col-md-2 d-flex align-items-center">
                     <div id="logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img class="img-fluid" src="{{ asset('client_template/img/home/logo.png') }}" alt="logo">
                         </a>
                     </div>
@@ -18,10 +18,10 @@
                     <div class="menu navbar collapse navbar-collapse">
                         <ul class="menu-top navbar-nav">
                             <li class="nav-link">
-                                <a href="#" class="parent">Trang chủ</a>                                
+                                <a href="#" class="parent">Trang chủ</a>
                             </li>
-                            <li >
-                                <a href="#" class="parent">Sản phẩm</a>                                
+                            <li>
+                                <a href="#" class="parent">Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="contact.html" class="parent">Liên hệ</a>
@@ -52,8 +52,16 @@
                     <div class="desktop_cart">
                         <div class="blockcart block-cart cart-preview tiva-toggle">
                             <div class="header-cart tiva-toggle-btn">
-                                <span class="cart-products-count">0</span>
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </div>
+                            <div class="dropdown-content">
+                                <div class="cart-content" style="height:400px;overflow-y:scroll">
+                                    <table>
+                                        <tbody id="show_cart">
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

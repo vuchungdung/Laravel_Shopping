@@ -40,10 +40,12 @@
                             <tr>
                                 <th>Tên</th>
                                 <th>Hình ảnh</th>
-                                <th>Số lượng còn</th>
+                                <th>Số lượng</th>
                                 <th>Đơn giá</th>
+                                <th>Khuyến mãi</th>
                                 <th>Hiển thị</th>
                                 <th>Hot</th>
+                                <th>Bật/Tắt KM</th>
                                 <th style="width: 12%;">Thao tác</th>
                             </tr>
                         </thead>
@@ -56,11 +58,15 @@
                                 </td>
                                 <td>{{ $item->quatity }}</td>
                                 <td style="font-weight:600;color:red">{{ number_format($item->price) }} đồng</td>
+                                <td style="font-weight:500;color:green">{{ number_format($item->discount) }} đồng</td>
                                 <td>
-                                    <input type="checkbox" value="{{ $item->homeflag }}" name="" id="">
+                                    <input type="checkbox" checked="{{ $item->homeflag }}==1:'check'?''" name="" id="">
                                 </td>
                                 <td>
-                                    <input type="checkbox" value="{{ $item->hotflag }}" name="" id="">
+                                    <input type="checkbox" checked="{{ $item->homeflag }}==1:'check'?''" name="" id="">
+                                </td>
+                                <td>
+                                    <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="" id="">
                                 </td>
                                 <td>
                                     <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
@@ -74,8 +80,10 @@
                             <th>Hình ảnh</th>
                             <th>Số lượng còn</th>
                             <th>Đơn giá</th>
+                            <th>Khuyến mãi</th>
                             <th>Hiển thị</th>
                             <th>Hot</th>
+                            <th>Bật/Tắt KM</th>
                             <th style="width: 12%;">Thao tác</th>
                         </tfoot>
                     </table>

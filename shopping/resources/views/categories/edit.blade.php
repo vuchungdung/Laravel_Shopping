@@ -34,7 +34,7 @@
 						<div class="card-body" style="padding: 0px;">
 							<div class="form-group">
 								<label>Tên danh mục</label>
-								<input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục" value="{{ $item -> name }}">
+								<input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục" value="{{ $item -> category_name }}">
 							</div>
 							<div class="form-group">
 								<label>Danh mục gốc</label>

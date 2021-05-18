@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,27 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', action:'App\Http\Controllers\HomeController@index');
+
+Route::get('/login', action:'App\Http\Controllers\AuthController@login_index');
+Route::post('/login', action:'App\Http\Controllers\AuthController@login_post');
+
+Route::get('/register', action:'App\Http\Controllers\AuthController@register_index');
+Route::post('/register', action:'App\Http\Controllers\AuthController@register_post');
+
 Route::get('/detail/{id}', action:'App\Http\Controllers\HomeController@detail');
 Route::get('/admin', function () {
+    $username = Session::get('user_admin');
+    if(!$username){
+        return redirect('/login');
+    }
+    else{
+        return view('admin');
+    }
     return view('admin');
 });
+
+Route::post('/add-to-cart', action:'App\Http\Controllers\CartController@savecart');
+Route::get('/load-cart', action:'App\Http\Controllers\CartController@loadcart');
 
 Route::prefix('categories')->group(function () {
     Route::get('/index', [

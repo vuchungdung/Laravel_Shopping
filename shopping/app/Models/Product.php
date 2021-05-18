@@ -21,8 +21,11 @@ class Product extends Model
         'images',
         'viewcount',
         'quatity',
+        'content',
         'description',
-        'created_at'
+        'created_at',
+        'isdiscount',
+        'discount'
     ];
 
     protected $table ='products';

@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Exception;
+use App\Models\Product;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use PHPUnit\Util\Json;
+
+class CartController extends Controller
+{
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+    public function savecart(Request $request)
+    {
+        $product = $this->product->find($request->id);
+        $session_id = substr(md5(microtime()),rand(0,26),5);
+        $cart = Session::get('cart');
+        if($cart){
+            $is_avaible= 0;
+            foreach($cart as $key => &$val){
+                if($val['product_id'] == $request->id){
+                    $is_avaible = 1;
+                    $cart[$key] = array(
+                        'session_id' => $val['session_id'],
+                        'product_name' => $val['product_name'],
+                        'product_id' => $val['product_id'],
+                        'product_img' => $val['product_img'],
+                        'product_count' => $val['product_count']+ $request->count,
+                        'product_price' => $val['product_price'],
+                    );
+                    Session::put('cart',$cart);
+                }
+            }
+            if($is_avaible == 0){
+                $cart[] = array(
+                    "session_id" => $session_id,
+                    "product_id" => $product['id'],
+                    "product_name" => $product['name'],
+                    "product_price" => $product['price'],
+                    "product_img" => $product['images'],
+                    "product_count" => $request->count,
+                );
+                Session::put('cart',$cart);
+            }
+        }
+        else{
+            $cart[] = array(
+                "session_id" => $session_id,
+                "product_id" => $product['id'],
+                "product_name" => $product['name'],
+                "product_price" => $product['price'],
+                "product_img" => $product['images'],
+                "product_count" => $request->count,
+            );  
+            Session::put('cart',$cart);          
+        }
+        Session::save();
+        $data = Session::get('cart');
+        $responseHTML = '';
+        $total = 0;
+        foreach($data as $item){
+            $total = $total + $item["product_count"]*$item["product_price"];
+            $responseHTML .= '<div class="cart-content"> <table> <tbody> <tr> <td class="product-image"> <a href="product-detail.html"> <img src="/images/'.$item['product_img'].'" alt="Product"> </a> </td> <td> <div class="product-name"> <a href="product-detail.html">'.$item['product_name'].'</a> </div> <div> '.$item['product_count'].' x <span class="product-price">'.number_format($item['product_price']).' VNĐ</span> </div> </td> <td class="action"> <a class="remove" href="#"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a> </td> </tr>';
+        }
+        $responseHTML .= '<tr class="total"> <td colspan="2">Total:</td> <td>'.number_format($total).'VNĐ </td> </tr> <tr> <td colspan="3" class="d-flex justify-content-center"> <div class="cart-button"> <a href="product-cart.html" title="View Cart">View Cart</a> <a href="product-checkout.html" title="Checkout">Checkout</a> </div> </td> </tr>';
+        print_r($responseHTML);
+    }
+    public function loadcart()
+    {       
+        $data = Session::get('cart');
+        $responseHTML = '';
+        if($data){           
+            $total = 0;
+            foreach($data as $item){
+                $total = $total + $item["product_count"]*$item["product_price"];
+                $responseHTML .= '<tr> <td class="product-image"> <a href="product-detail.html"> <img src="/images/'.$item['product_img'].'" alt="Product"> </a> </td> <td> <div class="product-name"> <a href="product-detail.html">'.$item['product_name'].'</a> </div> <div> <span id="xcount">'.$item['product_count'].'</span> x <span class="product-price">'.number_format($item['product_price']).' VNĐ</span> </div> </td> <td class="action"> <a class="remove" href="#"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a> </td> </tr>';
+            }
+            $responseHTML .= '<tr class="total"> <td colspan="2">Total:</td> <td>'.number_format($total).'VNĐ </td> </tr> <tr> <td colspan="3" class="d-flex justify-content-center"> <div class="cart-button"> <a href="product-cart.html" title="View Cart">Xem giỏ hàng</a> <a href="product-checkout.html" title="Checkout">Thanh toán</a> </div> </td> </tr>';
+            
+        }
+        print_r($responseHTML);
+    }
+}

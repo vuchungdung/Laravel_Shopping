@@ -55,6 +55,8 @@
 
     <!-- Template JS -->
     <script src="{{ asset('client_template/js/theme.js') }}"></script>
+    <script>
+    </script>
 </body>
 
 

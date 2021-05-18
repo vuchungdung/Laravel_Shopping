@@ -35,39 +35,35 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-        try {
-            if (!$request->hasFile('images')) {
-                return "Mời chọn file cần upload";
-            }
-            $image = $request->file('images');
-            $storedPath = $image->move('images', $image->getClientOriginalName());
-            $this->product->create([
-                'name' => $request->name,
-                'categoryId' => $request->categoryId,
-                'images' => $storedPath->getFilename(),
-                'price' => $request->price,
-                'quatity' => $request->quatity,
-                'ownerId' => $request->ownerId,
-                'viewcount' => 1,
-                'hotflag' => $request->hotflag = 'on' ? 1 : 0,
-                'homeflag' => $request->homeflag = 'on' ? 1 : 0,
-                'description' => $request->description,
-                'alias' => Str::slug($request->name, '-')
-            ]);
-            return redirect('/products/create')->with('status', 'Thêm thành công!');
-        } catch (Exception $e) {
-            report($e);
-            return redirect('/products/create')->with('status', 'Thêm thất bại!');
+        if (!$request->hasFile('images')) {
+            return "Mời chọn file cần upload";
         }
-
-        return redirect('/products/create')->with('status', 'Thêm thành công!');
+        $image = $request->file('images');
+        $storedPath = $image->move('images', $image->getClientOriginalName());
+        $this->product->create([
+            'name' => $request->name,
+            'categoryId' => $request->categoryId,
+            'images' => $storedPath->getFilename(),
+            'price' => $request->price,
+            'quatity' => $request->quatity,
+            'ownerId' => $request->ownerId,
+            'content' => $request->content,
+            'viewcount' => 1,
+            'hotflag' => $request->hotflag = 'on' ? 1 : 0,
+            'homeflag' => $request->homeflag = 'on' ? 1 : 0,
+            'isdiscount' => $request->isdiscount = 'on' ? 1 : 0,
+            'discount' => $request->discount,
+            'description' => $request->description,
+            'alias' => Str::slug($request->name, '-')
+        ]);
+        return redirect('/products/create')->with('status', 'Thêm thành công!');           
     }
 
     function getcategory()
     {
         $datas = Category::all();
         foreach ($datas as $value) {
-            $this->htmlCategory .= '<option value="' . $value['id'] . '">' . $value['name'] . '</option>';
+            $this->htmlCategory .= '<option value="' . $value['id'] . '">' . $value['category_name'] . '</option>';
         }
         return $this->htmlCategory;
     }
@@ -76,7 +72,7 @@ class ProductController extends Controller
     {
         $datas = product_owner::all();
         foreach ($datas as $value) {
-            $this->htmlOwner .= '<option value="' . $value['id'] . '">' . $value['name'] . '</option>';
+            $this->htmlOwner .= '<option value="' . $value['id'] . '">' . $value['owner_name'] . '</option>';
         }
         return $this->htmlOwner;
     }
@@ -107,6 +103,9 @@ class ProductController extends Controller
                 'hotflag' => $request->hotflag = 'on' ? 1 : 0,
                 'homeflag' => $request->homeflag = 'on' ? 1 : 0,
                 'description' => $request->description,
+                'content' => $request->content,
+                'isdiscount' => $request->isdiscount = 'on' ? 1 : 0,
+                'discount' => $request->discount,
                 'alias' => Str::slug($request->name, '-')
 			]);
 			return redirect('/products/edit/'.$id)->with('status', 'Cập nhật thành công!');
@@ -124,10 +123,10 @@ class ProductController extends Controller
 		$datas = Category::all();
 		foreach($datas as $value){
 			if($value->id == $id){
-				$this->htmlCategory .= '<option selected value="' . $value['id'] . '">'  . $value['name'] . '</option>';
+				$this->htmlCategory .= '<option selected value="' . $value['id'] . '">'  . $value['category_name'] . '</option>';
 			}
 			else{
-				$this->htmlCategory .= '<option value="' . $value['id'] . '">'  . $value['name'] . '</option>';
+				$this->htmlCategory .= '<option value="' . $value['id'] . '">'  . $value['category_name'] . '</option>';
 			}
 		}
 		return $this->htmlCategory;
@@ -137,10 +136,10 @@ class ProductController extends Controller
 		$datas = product_owner::all();
 		foreach($datas as $value){
 			if($value->id == $id){
-				$this->htmlOwner .= '<option selected value="' . $value['id'] . '">'  . $value['name'] . '</option>';
+				$this->htmlOwner .= '<option selected value="' . $value['id'] . '">'  . $value['owner_name'] . '</option>';
 			}
 			else{
-				$this->htmlOwner .= '<option value="' . $value['id'] . '">'  . $value['name'] . '</option>';
+				$this->htmlOwner .= '<option value="' . $value['id'] . '">'  . $value['owner_name'] . '</option>';
 			}
 		}
 		return $this->htmlOwner;

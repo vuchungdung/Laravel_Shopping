@@ -28,6 +28,11 @@
                 <div class="card-header">
                     <h3 class="card-title">Cập nhật sản phẩm</h3>
                 </div>
+                @if (session('status'))
+                <p class="text-warning" style="margin:0px;padding:0px">
+                    {{ session('status') }}
+                </p>
+                @endif
                 <div class="card-body">
                     <form role="form" action="{{ route('products.saveedit',['id' => $item->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -37,20 +42,30 @@
                                 <input type="text" name="name" class="form-control" value="{{ $item -> name }}" placeholder="Nhập tên sản phẩm">
                             </div>
                             <div class="form-group">
+                                <label>Mô tả ngắn</label>
+                                <input type="text" name="description" class="form-control" value="{{ $item -> description }}" placeholder="Nhập giới thiệu sản phẩm">
+                            </div>
+                            <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Đơn giá</label>
                                             <input type="int" name="price" value="{{ $item -> price }}" class="form-control" placeholder="Nhập đơn giá sản phẩm">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Giá khuyến mãi(nếu có)</label>
+                                            <input type="int" name="discount" value="{{ $item -> discount }}" class="form-control" placeholder="Nhập đơn giá sản phẩm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Số lượng</label>
                                             <input type="int" name="quatity" value="{{ $item -> quatity }}" class="form-control" placeholder="Nhập đơn giá sản phẩm">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Hình ảnh</label>
                                             <input type="file" name="images" class="form-control" placeholder="Chọn hình ảnh">
@@ -82,11 +97,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea class="textarea" id="myTextarea" name="description" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $item->description !!}</textarea>
+                                <textarea class="textarea" id="myTextarea" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $item->description !!}</textarea>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" name="homeflag" id=""> Hiển thị </br>
-                                <input type="checkbox" name="hotflag" id=""> Sản phẩm hot </br>
+                                <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="homeflag" id=""> Hiển thị </br>
+                                <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="hotflag" id=""> Sản phẩm hot </br>
+                                <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="isdiscount" id=""> Khuyến mãi </br>
                             </div>
                         </div>
                         <div>
@@ -94,11 +110,7 @@
                             <a href="{{ route('products.index') }}" class="btn btn-default">Quay lại</a>
                         </div>
                     </form>
-                    @if (session('status'))
-                    <p class="text-warning" style="margin:0px;padding:0px">
-                        {{ session('status') }}
-                    </p>
-                    @endif
+
                 </div>
                 <!-- /.card-body -->
             </div>

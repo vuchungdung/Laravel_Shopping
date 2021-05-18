@@ -47,7 +47,7 @@
                         <tbody>
                             @foreach($datas as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->category_name }}</td>
 
                                 <td>{{ $item->alias }}</td>
                                 <td>{{ date("d-m-Y", strtotime($item->created_at)) }}</td>

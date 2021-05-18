@@ -34,7 +34,7 @@
 						<div class="card-body" style="padding: 0px;">
 							<div class="form-group">
 								<label>Tên danh mục</label>
-								<input type="text" name="name" class="form-control" placeholder="Nhập tên danh mục">
+								<input type="text" name="category_name" class="form-control" placeholder="Nhập tên danh mục">
 							</div>
 							<div class="form-group">
 								<label>Danh mục gốc</label>

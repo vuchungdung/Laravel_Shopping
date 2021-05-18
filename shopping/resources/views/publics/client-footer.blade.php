@@ -171,3 +171,58 @@
         </div>
     </div>
 </footer>
+<script src="{{ asset('client_template/libs/jquery/jquery.min.js') }}"></script>
+
+<script>
+    $(document).ready(function() {
+        function onLoad() {
+            $.ajax({
+                url: "{{url('/load-cart')}}",
+                method: 'get',
+                data: {},
+                success: function(res) {
+                    if (res) {
+                        $('#show_cart').empty();
+                        $('#show_cart').append(res);
+                    }
+                },
+                error: function(mess) {
+                    console.log(mess);
+                }
+            });
+        }
+        onLoad();
+        $('#add-to-cart').on('click', function() {
+            var id = $(this).data('id_product');
+            var count = $('#quantity_wanted').val();
+            var count_product = $('#count_product').val();
+            if (count < 1) {
+                toastr.error('Số lượng phải lớn hơn 0!');
+            }
+            if (count > count_product - 1) {
+                toastr.error('Số lượng vượt quá só lượng cho phép!');
+            } else {
+                $.ajax({
+                    url: "{{url('/add-to-cart')}}",
+                    method: 'post',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        id,
+                        count
+                    },
+                    success: function(res) {
+                        if (res) {
+                            $('#show_cart').empty();
+                            $('#show_cart').append(res);
+                            onLoad()
+                            toastr.success('Thêm sản phẩm vào giỏ hàng thành công!');
+                        }
+                    },
+                    error: function(mess) {
+                        console.log(mess);
+                    }
+                })
+            }
+        })
+    })
+</script>
