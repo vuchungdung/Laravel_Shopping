@@ -25,13 +25,13 @@ Route::post('/register', action:'App\Http\Controllers\AuthController@register_po
 
 Route::get('/detail/{id}', action:'App\Http\Controllers\HomeController@detail');
 Route::get('/admin', function () {
-    $username = Session::get('user_admin');
-    if(!$username){
-        return redirect('/login');
-    }
-    else{
-        return view('admin');
-    }
+    // $username = Session::get('user_admin');
+    // if(!$username){
+    //     return redirect('/login');
+    // }
+    // else{
+    //     return view('admin');
+    // }
     return view('admin');
 });
 

@@ -35,6 +35,15 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
+        if(!$request->has('hotflag')){
+            $request->request->add(['hotflag'=>'']);
+        }
+        if(!$request->has('homeflag')){
+            $request->request->add(['homeflag'=>'']);
+        }
+        if(!$request->has('isdiscount')){
+            $request->request->add(['isdiscount'=>'']);
+        }
         if (!$request->hasFile('images')) {
             return "Mời chọn file cần upload";
         }
@@ -49,9 +58,9 @@ class ProductController extends Controller
             'ownerId' => $request->ownerId,
             'content' => $request->content,
             'viewcount' => 1,
-            'hotflag' => $request->hotflag = 'on' ? 1 : 0,
-            'homeflag' => $request->homeflag = 'on' ? 1 : 0,
-            'isdiscount' => $request->isdiscount = 'on' ? 1 : 0,
+            'hotflag' => $request->hotflag = "on" ? '' : 'checked',
+            'homeflag' => $request->homeflag = "on" ? '' : 'checked',
+            'isdiscount' => $request->isdiscount = "on" ? '' : 'checked',
             'discount' => $request->discount,
             'description' => $request->description,
             'alias' => Str::slug($request->name, '-')
@@ -87,36 +96,44 @@ class ProductController extends Controller
     public function saveedit($id,Request $request)
     {
         try{
+            if(!$request->has('hotflag')){
+                $request->request->add(['hotflag'=>'']);
+            }
+            if(!$request->has('homeflag')){
+                $request->request->add(['homeflag'=>'']);
+            }
+            if(!$request->has('isdiscount')){
+                $request->request->add(['isdiscount'=>'']);
+            }
             if (!$request->hasFile('images')) {
                 return "Mời chọn file cần upload";
             }
+            dd($request);
             $image = $request->file('images');
             $storedPath = $image->move('images', $image->getClientOriginalName());
-			$this->product->find($id)->update([
-				'name' => $request->name,
+            $this->product->find($id)->update([
+                'name' => $request->name,
                 'categoryId' => $request->categoryId,
                 'images' => $storedPath->getFilename(),
                 'price' => $request->price,
                 'quatity' => $request->quatity,
                 'ownerId' => $request->ownerId,
                 'viewcount' => 1,
-                'hotflag' => $request->hotflag = 'on' ? 1 : 0,
-                'homeflag' => $request->homeflag = 'on' ? 1 : 0,
+                'hotflag' => $request->hotflag = "on" ? '' : 'checked',
+                'homeflag' => $request->homeflag = "on" ? '' : 'checked',
                 'description' => $request->description,
                 'content' => $request->content,
-                'isdiscount' => $request->isdiscount = 'on' ? 1 : 0,
+                'isdiscount' => $request->isdiscount = "on" ? '' : 'checked',
                 'discount' => $request->discount,
                 'alias' => Str::slug($request->name, '-')
-			]);
-			return redirect('/products/edit/'.$id)->with('status', 'Cập nhật thành công!');
+            ]);
+            return redirect('/products/edit/'.$id)->with('status', 'Cập nhật thành công!');
 		}
 		catch(Exception $e){
 			report($e);
 			return redirect('/products/index')->with('status', 'Cập nhật thất bại!');
 		}
-        if (!$request->hasFile('images')) {
-            return "Mời chọn file cần upload";
-        }
+        
     }
 
     function CategoryRecusiveEdit($id = 0){

@@ -15,13 +15,37 @@ class HomeController extends Controller
 
     public function index(){
         $datas = Category::where('parentId',0)->get();
-        $product_hot = $this->product->where('hotflag',1)->get();
-        $product_new = $this->product->where('homeflag',1)->orderBy('created_date', 'desc');
-        $product_sale = $this->product->where('hotflag',1)->get();
-        $living_room = $this->category->where('parentId',72)->get();
-        $kitchen_room = $this->category->where('parentId',73)->get();
+        $living_room = $this->category->where('parentId','=',72)->get();
+        $kitchen_room = $this->category->where('parentId','=',73)->get();
+        $living_room_hot = $this->product->where([
+                            ['homeflag', '=', "checked"],
+                            ['categoryId', '=', 72],
+                            ['hotflag', '=', "checked"]])->get();
+        $living_room_new = $this->product->where([
+                            ['homeflag', '=', "checked"],                
+                            ['categoryId', '=', 72]])->orderBy('created_at', 'desc')->get();
+        $living_room_sale = $this->product->where([
+                            ['homeflag', '=', "checked"],
+                            ['categoryId', '=', 72],
+                            ['isdiscount', '=', "checked"]])->get();
+        $kitchen_room_hot = $this->product->where([
+                            ['homeflag', '=', "checked"],   
+                            ['categoryId', '=', 73],
+                            ['hotflag', '=', "checked"]])->get();
+        $kitchen_room_new = $this->product->where([
+                            ['homeflag', '=', "checked"],
+                            ['categoryId', '=', 73]])->orderBy('created_at', 'desc')->get();
+        $kitchen_room_sale = $this->product->where([
+                            ['homeflag', '=', "checked"],
+                            ['categoryId', '=', 73],
+                            ['isdiscount', '=', "checked"]])->get();
         return view('home',['datas'=>$datas,
-                            'product_hot'=>$product_hot,
+                            'living_room_hot'=>$living_room_hot,
+                            'living_room_new'=>$living_room_new,
+                            'living_room_sale'=>$living_room_sale,
+                            'kitchen_room_sale'=>$kitchen_room_sale,
+                            'kitchen_room_new'=>$kitchen_room_new,
+                            'kitchen_room_hot'=>$kitchen_room_hot,
                             'living_room'=>$living_room,
                             'kitchen_room'=>$kitchen_room]);
     }
@@ -30,7 +54,9 @@ class HomeController extends Controller
                               ->join('categories', 'products.categoryId', '=', 'categories.id')
                               ->select('products.*', 'categories.category_name', 'product_owners.owner_name')
                               ->find($id);
-        $datas = $this->product->where('categoryId',$item->categoryId)->get();
+        $datas = $this->product->where([
+                ['categoryId', '=', $item->categoryId],
+                ['id', '<>', $item->id]])->get();
         $categories = Category::where('parentId',0)->get();
         return view('client.detail',['item'=>$item,'datas'=>$datas,'categories'=>$categories]);
     }

@@ -128,13 +128,13 @@
                                             <div class="tab-content">
                                                 <div id="new" class="tab-pane fade in active show">
                                                     <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
-                                                        @foreach($product_hot as $item)
+                                                        @foreach($living_room_new as $item1)
                                                         <div class="item text-center">
                                                             <div class="product-miniature first-item js-product-miniature item-one">
                                                                 <div class="thumbnail-container">
-                                                                    <a href="/detail/{{$item->id}}">
-                                                                        <img class="img-fluid image-cover" src="/images/{{$item->images}}" alt="img">
-                                                                        <img class="img-fluid image-secondary" src="/images/{{$item->images}}" alt="img">
+                                                                    <a href="/detail/{{$item1->id}}">
+                                                                        <img class="img-fluid image-cover" src="/images/{{$item1->images}}" alt="img">
+                                                                        <img class="img-fluid image-secondary" src="/images/{{$item1->images}}" alt="img">
                                                                     </a>
                                                                     <div class="product-flags discount">-30%</div>
                                                                     <div class="highlighted-informations">
@@ -148,7 +148,7 @@
                                                                 <div class="product-description">
                                                                     <div class="product-groups">
                                                                         <div class="product-title">
-                                                                            <a href="product-detail.html">{{$item->name}}</a>
+                                                                            <a href="product-detail.html">{{$item1->name}}</a>
                                                                         </div>
                                                                         <div class="rating">
                                                                             <div class="star-content">
@@ -161,7 +161,7 @@
                                                                         </div>
                                                                         <div class="product-group-price">
                                                                             <div class="product-price-and-shipping">
-                                                                                <span class="price">{{number_format($item->price)}} VNĐ</span>
+                                                                                <span class="price">{{number_format($item1->price)}} VNĐ</span>
                                                                                 <!-- <del class="regular-price">£28.68</del> -->
                                                                             </div>
                                                                         </div>
@@ -188,12 +188,13 @@
 
                                                 <div class="tab-pane fade" id="best">
                                                     <div class="category-product-index owl-carousel owl-theme">
+                                                        @foreach($living_room_sale as $item2)
                                                         <div class="item text-center">
                                                             <div class="product-miniature js-product-miniature item-one first-item">
                                                                 <div class="thumbnail-container">
                                                                     <a href="product-detail.html">
-                                                                        <img class="img-fluid image-cover" src="/client_template/img/product/4.jpg') }}" alt="img">
-                                                                        <img class="img-fluid image-secondary" src="/client_template/img/product/10.jpg') }}" alt="img">
+                                                                        <img class="img-fluid image-cover" src="/images/{{$item2->images}}" alt="img">
+                                                                        <img class="img-fluid image-secondary" src="/images/{{$item2->images}}" alt="img">
                                                                     </a>
                                                                     <div class="product-flags discount">-30%</div>
                                                                     <div class="highlighted-informations">
@@ -207,7 +208,7 @@
                                                                 <div class="product-description">
                                                                     <div class="product-groups">
                                                                         <div class="product-title">
-                                                                            <a href="product-detail.html">Nam semper a ligula nec</a>
+                                                                            <a href="/detail/{{$item2->id}}">{{$item2->name}}</a>
                                                                         </div>
                                                                         <div class="rating">
                                                                             <div class="star-content">
@@ -220,8 +221,8 @@
                                                                         </div>
                                                                         <div class="product-group-price">
                                                                             <div class="product-price-and-shipping">
-                                                                                <span class="price">£20.08</span>
-                                                                                <del class="regular-price">£28.68</del>
+                                                                                <span class="price">{{$item2->price}}</span>
+                                                                                <del class="regular-price">{{$item2->discount}}</del>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -241,17 +242,19 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
 
                                                 <div class="tab-pane fade" id="sale">
                                                     <div class="category-product-index owl-carousel owl-theme">
+                                                        @foreach($living_room_hot as $item3)
                                                         <div class="item text-center">
                                                             <div class="product-miniature js-product-miniature item-one first-item">
                                                                 <div class="thumbnail-container">
                                                                     <a href="product-detail.html">
-                                                                        <img class="img-fluid image-cover" src="/client_template/img/product/7.jpg') }}" alt="img">
-                                                                        <img class="img-fluid image-secondary" src="/client_template/img/product/14.jpg') }}" alt="img">
+                                                                        <img class="img-fluid image-cover" src="/images/{{$item3->images}}" alt="img">
+                                                                        <img class="img-fluid image-secondary" src="/images/{{$item3->images}}" alt="img">
                                                                     </a>
                                                                     <div class="product-flags discount">-30%</div>
                                                                     <div class="highlighted-informations">
@@ -265,7 +268,7 @@
                                                                 <div class="product-description">
                                                                     <div class="product-groups">
                                                                         <div class="product-title">
-                                                                            <a href="product-detail.html">Nulla et justo non augue</a>
+                                                                            <a href="/detail/{{$item3->id}}">{{$item3->name}}</a>
                                                                         </div>
                                                                         <div class="rating">
                                                                             <div class="star-content">
@@ -278,8 +281,8 @@
                                                                         </div>
                                                                         <div class="product-group-price">
                                                                             <div class="product-price-and-shipping">
-                                                                                <span class="price">£20.08</span>
-                                                                                <del class="regular-price">£28.68</del>
+                                                                                <span class="price">{{$item3->price}}</span>
+                                                                                <!-- <del class="regular-price">£28.68</del> -->
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -299,6 +302,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -635,9 +639,9 @@
                                                 </div>
                                                 <div class="cate-child-vertical">
                                                     <ul class="d-flex align-items-start flex-column">
-                                                        @foreach($kitchen_room as $item)
+                                                        @foreach($kitchen_room as $item4)
                                                         <li>
-                                                            <a href="product-grid-sidebar-left.html">{{ $item-> category_name}}</a>
+                                                            <a href="product-grid-sidebar-left.html">{{ $item4-> category_name}}</a>
                                                         </li>
                                                         @endforeach
                                                         <li class="last float-right">
@@ -646,32 +650,30 @@
                                                     </ul>
                                                 </div>
                                             </div>
-
-                                            <!-- column 9 -->
                                             <div class="categoriestab-left product-tab col-md-9 flex-9">
                                                 <div class="title-tab-content d-flex justify-content-start">
                                                     <ul class="nav nav-tabs">
                                                         <li>
-                                                            <a href="#new_kitchen" data-toggle="tab" class="active">Sản phẩm mới</a>
+                                                            <a href="#new1" data-toggle="tab" class="active">Sản phẩm mới</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#best_kitchen" data-toggle="tab">Sản phẩm khuyến mãi</a>
+                                                            <a href="#best1" data-toggle="tab">Sản phẩm khuyến mãi</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#sale_kitchen" data-toggle="tab">Sản phẩm hot</a>
+                                                            <a href="#sale1" data-toggle="tab">Sản phẩm hot</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="tab-content">
-                                                    <!-- new kitchen -->
-                                                    <div id="new_kitchen" class="tab-pane fade in active show">
+                                                    <div id="new1" class="tab-pane fade in active show">
                                                         <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
+                                                            @foreach($kitchen_room_new as $item5)
                                                             <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
+                                                                <div class="product-miniature first-item js-product-miniature item-one">
                                                                     <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/6.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/4.jpg') }}" alt="img">
+                                                                        <a href="/detail/{{$item1->id}}">
+                                                                            <img class="img-fluid image-cover" src="/images/{{$item5->images}}" alt="img">
+                                                                            <img class="img-fluid image-secondary" src="/images/{{$item5->images}}" alt="img">
                                                                         </a>
                                                                         <div class="product-flags discount">-30%</div>
                                                                         <div class="highlighted-informations">
@@ -685,7 +687,7 @@
                                                                     <div class="product-description">
                                                                         <div class="product-groups">
                                                                             <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
+                                                                                <a href="/detail/{{$item5->id}}">{{$item5->name}}</a>
                                                                             </div>
                                                                             <div class="rating">
                                                                                 <div class="star-content">
@@ -698,14 +700,13 @@
                                                                             </div>
                                                                             <div class="product-group-price">
                                                                                 <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
+                                                                                    <span class="price">{{number_format($item5->price)}} VNĐ</span>
+                                                                                    <!-- <del class="regular-price">£28.68</del> -->
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="product-buttons d-flex justify-content-center">
                                                                             <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
                                                                                 <a class="add-to-cart" href="#" data-button-action="add-to-cart">
                                                                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                                                                 </a>
@@ -720,126 +721,19 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/10.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/11.jpg') }}" alt="img">
-                                                                        </a>
-                                                                        <div class="product-flags discount">-10%</div>
-                                                                        <div class="highlighted-informations">
-                                                                            <div class="variant-links">
-                                                                                <a href="#" class="color beige" title="Beige"></a>
-                                                                                <a href="#" class="color orange" title="Orange"></a>
-                                                                                <a href="#" class="color green" title="Green"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex justify-content-center">
-                                                                            <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-
-                                                                                <input type="hidden" name="id_product" value="1">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/16.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/14.jpg') }}" alt="img">
-                                                                        </a>
-                                                                        <div class="highlighted-informations">
-                                                                            <div class="variant-links">
-                                                                                <a href="#" class="color beige" title="Beige"></a>
-                                                                                <a href="#" class="color orange" title="Orange"></a>
-                                                                                <a href="#" class="color green" title="Green"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex justify-content-center">
-                                                                            <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-
-                                                                                <input type="hidden" name="id_product" value="1">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
 
-                                                    <!-- best kitchen -->
-                                                    <div id="best_kitchen" class="tab-pane fade">
+                                                    <div class="tab-pane fade" id="best1">
                                                         <div class="category-product-index owl-carousel owl-theme">
+                                                            @foreach($kitchen_room_sale as $item6)
                                                             <div class="item text-center">
                                                                 <div class="product-miniature js-product-miniature item-one first-item">
                                                                     <div class="thumbnail-container">
                                                                         <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/8.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/13.jpg') }}" alt="img">
+                                                                            <img class="img-fluid image-cover" src="/images/{{$item6->images}}" alt="img">
+                                                                            <img class="img-fluid image-secondary" src="/images/{{$item6->images}}" alt="img">
                                                                         </a>
                                                                         <div class="product-flags discount">-30%</div>
                                                                         <div class="highlighted-informations">
@@ -853,7 +747,7 @@
                                                                     <div class="product-description">
                                                                         <div class="product-groups">
                                                                             <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
+                                                                                <a href="/detail/{{$item6->id}}">{{$item6->name}}</a>
                                                                             </div>
                                                                             <div class="rating">
                                                                                 <div class="star-content">
@@ -866,14 +760,13 @@
                                                                             </div>
                                                                             <div class="product-group-price">
                                                                                 <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
+                                                                                    <span class="price">{{$item6->price}}</span>
+                                                                                    <del class="regular-price">{{$item6->discount}}</del>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="product-buttons d-flex justify-content-center">
                                                                             <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
                                                                                 <a class="add-to-cart" href="#" data-button-action="add-to-cart">
                                                                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                                                                 </a>
@@ -888,124 +781,19 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/4.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/12.jpg') }}" alt="img">
-                                                                        </a>
-                                                                        <div class="product-flags discount">-10%</div>
-                                                                        <div class="highlighted-informations">
-                                                                            <div class="variant-links">
-                                                                                <a href="#" class="color beige" title="Beige"></a>
-                                                                                <a href="#" class="color orange" title="Orange"></a>
-                                                                                <a href="#" class="color green" title="Green"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex justify-content-center">
-                                                                            <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/13.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/6.jpg') }}" alt="img">
-                                                                        </a>
-                                                                        <div class="highlighted-informations">
-                                                                            <div class="variant-links">
-                                                                                <a href="#" class="color beige" title="Beige"></a>
-                                                                                <a href="#" class="color orange" title="Orange"></a>
-                                                                                <a href="#" class="color green" title="Green"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex justify-content-center">
-                                                                            <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
 
-                                                    <!-- sale kitchen -->
-                                                    <div id="sale_kitchen" class="tab-pane fade">
+                                                    <div class="tab-pane fade" id="sale1">
                                                         <div class="category-product-index owl-carousel owl-theme">
+                                                            @foreach($kitchen_room_hot as $item7)
                                                             <div class="item text-center">
                                                                 <div class="product-miniature js-product-miniature item-one first-item">
                                                                     <div class="thumbnail-container">
                                                                         <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/10.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/8.jpg') }}" alt="img">
+                                                                            <img class="img-fluid image-cover" src="/images/{{$item7->images}}" alt="img">
+                                                                            <img class="img-fluid image-secondary" src="/images/{{$item7->images}}" alt="img">
                                                                         </a>
                                                                         <div class="product-flags discount">-30%</div>
                                                                         <div class="highlighted-informations">
@@ -1019,7 +807,7 @@
                                                                     <div class="product-description">
                                                                         <div class="product-groups">
                                                                             <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
+                                                                                <a href="/detail/{{$item7->id}}">{{$item7->name}}</a>
                                                                             </div>
                                                                             <div class="rating">
                                                                                 <div class="star-content">
@@ -1032,14 +820,13 @@
                                                                             </div>
                                                                             <div class="product-group-price">
                                                                                 <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
+                                                                                    <span class="price">{{$item7->price}}</span>
+                                                                                    <!-- <del class="regular-price">£28.68</del> -->
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="product-buttons d-flex justify-content-center">
                                                                             <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
                                                                                 <a class="add-to-cart" href="#" data-button-action="add-to-cart">
                                                                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                                                                 </a>
@@ -1054,114 +841,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/11.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/14.jpg') }}" alt="img">
-                                                                        </a>
-                                                                        <div class="product-flags discount">-20%</div>
-                                                                        <div class="highlighted-informations">
-                                                                            <div class="variant-links">
-                                                                                <a href="#" class="color beige" title="Beige"></a>
-                                                                                <a href="#" class="color orange" title="Orange"></a>
-                                                                                <a href="#" class="color green" title="Green"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex justify-content-center">
-                                                                            <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item text-center">
-                                                                <div class="product-miniature js-product-miniature item-one first-item">
-                                                                    <div class="thumbnail-container">
-                                                                        <a href="product-detail.html">
-                                                                            <img class="img-fluid image-cover" src="{{ asset('client_template/img/product/6.jpg') }}" alt="img">
-                                                                            <img class="img-fluid image-secondary" src="{{ asset('client_template/img/product/16.jpg') }}" alt="img">
-                                                                        </a>
-                                                                        <div class="product-flags discount">-20%</div>
-                                                                        <div class="highlighted-informations">
-                                                                            <div class="variant-links">
-                                                                                <a href="#" class="color beige" title="Beige"></a>
-                                                                                <a href="#" class="color orange" title="Orange"></a>
-                                                                                <a href="#" class="color green" title="Green"></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="product-description">
-                                                                        <div class="product-groups">
-                                                                            <div class="product-title">
-                                                                                <a href="product-detail.html">Nulla et justo non augue</a>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                                <div class="star-content">
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                    <div class="star"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="product-group-price">
-                                                                                <div class="product-price-and-shipping">
-                                                                                    <span class="price">£20.08</span>
-                                                                                    <del class="regular-price">£28.68</del>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="product-buttons d-flex justify-content-center">
-                                                                            <form action="http://demo1.cloodo.com/html/furnitica/index.html" method="post" class="formAddToCart">
-                                                                                <input type="hidden" name="id_product" value="1">
-                                                                                <a class="add-to-cart" href="#" data-button-action="add-to-cart">
-                                                                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                                </a>
-                                                                            </form>
-                                                                            <a class="addToWishlist" href="#" data-rel="1" onclick="">
-                                                                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                            </a>
-                                                                            <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
-                                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>

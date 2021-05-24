@@ -100,9 +100,9 @@
                                 <textarea class="textarea" id="myTextarea" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $item->description !!}</textarea>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="homeflag" id=""> Hiển thị </br>
-                                <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="hotflag" id=""> Sản phẩm hot </br>
-                                <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="isdiscount" id=""> Khuyến mãi </br>
+                                <input type="checkbox" name="homeflag" {{$item->homeflag}} > Hiển thị </br>
+                                <input type="checkbox" name="hotflag" {{$item->hotflag}} > Sản phẩm hot </br>
+                                <input type="checkbox" name="isdiscount" {{$item->isdiscount}} > Khuyến mãi </br>
                             </div>
                         </div>
                         <div>

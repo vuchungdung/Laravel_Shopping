@@ -99,9 +99,9 @@
                                 <textarea class="textarea" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" name="homeflag" id=""> Hiển thị </br>
-                                <input type="checkbox" name="hotflag" id=""> Sản phẩm hot </br>
-                                <input type="checkbox" name="isdiscount" id=""> Khuyến mãi </br>
+                                <input type="checkbox" name="homeflag" > Hiển thị </br>
+                                <input type="checkbox" name="hotflag" > Sản phẩm hot </br>
+                                <input type="checkbox" name="isdiscount" > Khuyến mãi </br>
                             </div>
                         </div>
                         <div>

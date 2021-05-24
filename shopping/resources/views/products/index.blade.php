@@ -60,13 +60,13 @@
                                 <td style="font-weight:600;color:red">{{ number_format($item->price) }} đồng</td>
                                 <td style="font-weight:500;color:green">{{ number_format($item->discount) }} đồng</td>
                                 <td>
-                                    <input type="checkbox" checked="{{ $item->homeflag }}==1:'check'?''" name="" id="">
+                                    <input type="checkbox" {{ $item->homeflag }} name="homeflag">
                                 </td>
                                 <td>
-                                    <input type="checkbox" checked="{{ $item->homeflag }}==1:'check'?''" name="" id="">
+                                    <input type="checkbox" {{ $item->hotflag }} name="hotflag">
                                 </td>
                                 <td>
-                                    <input type="checkbox" checked="{{ $item->isdiscount }}==1:'check'?''" name="" id="">
+                                    <input type="checkbox" {{ $item->isdiscount }} name="isdiscount">
                                 </td>
                                 <td>
                                     <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
