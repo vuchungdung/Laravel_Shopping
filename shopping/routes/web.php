@@ -37,6 +37,19 @@ Route::get('/admin', function () {
 
 Route::post('/add-to-cart', action:'App\Http\Controllers\CartController@savecart');
 Route::get('/load-cart', action:'App\Http\Controllers\CartController@loadcart');
+Route::get('/cart-detail', action:'App\Http\Controllers\CartController@detailcart');
+Route::get('/info-cart', action:'App\Http\Controllers\CartController@infocart');
+
+Route::prefix('orders')->group(function () {
+    Route::post('/save-order', [
+    	'as'=>'orders.save',
+    	'uses'=>'App\Http\Controllers\OrderController@save'
+    ]);
+    Route::get('/index', [
+    	'as'=>'orders.index',
+    	'uses'=>'App\Http\Controllers\OrderController@index'
+    ]);
+});
 
 Route::prefix('categories')->group(function () {
     Route::get('/index', [

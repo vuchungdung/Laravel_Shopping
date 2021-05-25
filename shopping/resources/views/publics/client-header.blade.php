@@ -55,7 +55,7 @@
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             </div>
                             <div class="dropdown-content">
-                                <div class="cart-content" style="height:400px;overflow-y:scroll">
+                                <div class="cart-content" style="max-height:400px;overflow-y:scroll">
                                     <table>
                                         <tbody id="show_cart">
 

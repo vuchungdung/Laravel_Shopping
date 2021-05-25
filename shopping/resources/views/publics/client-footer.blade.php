@@ -185,6 +185,10 @@
                         $('#show_cart').empty();
                         $('#show_cart').append(res);
                     }
+                    else{
+                        $('#show_cart').empty();
+                        $('#show_cart').append("Chưa có sản phẩm nào!");
+                    }
                 },
                 error: function(mess) {
                     console.log(mess);
