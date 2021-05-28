@@ -39,6 +39,8 @@ Route::post('/add-to-cart', action:'App\Http\Controllers\CartController@savecart
 Route::get('/load-cart', action:'App\Http\Controllers\CartController@loadcart');
 Route::get('/cart-detail', action:'App\Http\Controllers\CartController@detailcart');
 Route::get('/info-cart', action:'App\Http\Controllers\CartController@infocart');
+Route::get('/info-cart', action:'App\Http\Controllers\CartController@infocart');
+Route::get('/list-product', action:'App\Http\Controllers\HomeController@list');
 
 Route::prefix('orders')->group(function () {
     Route::post('/save-order', [

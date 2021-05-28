@@ -21,7 +21,7 @@
                                 <a href="#" class="parent">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="#" class="parent">Sản phẩm</a>
+                                <a href="/list-product" class="parent">Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="contact.html" class="parent">Liên hệ</a>

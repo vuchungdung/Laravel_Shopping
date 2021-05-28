@@ -60,4 +60,14 @@ class HomeController extends Controller
         $categories = Category::where('parentId',0)->get();
         return view('client.detail',['item'=>$item,'datas'=>$datas,'categories'=>$categories]);
     }
+    public function list($id){
+        if($id == null){
+            $datas = $this->product->paginate(18);
+        }
+        else{
+            $datas = $this->prpduct->where('categoryId','=',$id)->paginate(18);
+        }
+        $categories = Category::where('parentId',0)->get();
+        return view('client.list',['categories'=>$categories,'datas'=>$datas]);
+    }
 }

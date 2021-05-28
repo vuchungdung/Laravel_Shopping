@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Exception;
+use App\Mail\Email;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -31,6 +33,7 @@ class OrderController extends Controller
             $order->address = $request->address;
             $order->status = 0;
             $order->total = 0;
+            $order->payments = 0;
             $order->save();
 
             $totalMoney = 0;
@@ -47,6 +50,14 @@ class OrderController extends Controller
                 'total' => $totalMoney
             ]);
             Session::flush();
+            $email=[
+                'title'=>'Thông báo đơn hàng',
+                'body'=>'Xin chào bạn',
+                'name'=>$order->name,
+                'data'=>$data,
+                'total'=>$order->total
+            ];
+            Mail::to($order->email)->send(new Email($email));
             print_r(true);
         } else {
             print_r(false);

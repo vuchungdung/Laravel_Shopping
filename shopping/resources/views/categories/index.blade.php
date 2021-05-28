@@ -52,8 +52,8 @@
                                 <td>{{ $item->alias }}</td>
                                 <td>{{ date("d-m-Y", strtotime($item->created_at)) }}</td>
                                 <td>
-                                    <a href="{{ route('categories.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
-                                    <a href="{{ route('categories.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger">Xóa</a>
+                                    <a href="{{ route('categories.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success"><i class="icon ion-android-create"></i></a>
+                                    <a href="{{ route('categories.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger"><i class="icon ion-android-delete"></i></a>
                                 </td>
                             </tr>
                             @endforeach

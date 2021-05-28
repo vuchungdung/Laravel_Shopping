@@ -69,8 +69,8 @@
                                     <input type="checkbox" {{ $item->isdiscount }} name="isdiscount">
                                 </td>
                                 <td>
-                                    <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
-                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger">Xóa</a>
+                                    <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success"><i class="icon ion-android-create"></i></a>
+                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger"><i class="icon ion-android-delete"></i></a>
                                 </td>
                             </tr>
                             @endforeach

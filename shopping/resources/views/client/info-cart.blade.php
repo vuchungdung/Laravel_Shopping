@@ -227,12 +227,12 @@
                         $('input[name="address"]').val("");
                         $('input[name="email"]').val("");
                         $('input[name="phone"]').val("");
-                        $('#a').html(0);
+                        $('#a').html("Có tổng 0 sản phẩm trong giỏ hàng");
                         $('#b').html(0);
                         $('#c').html(0);
                     }
                     else{
-                        toastr.Error('Giỏ hàng đang bị chống!');
+                        toastr.warning('Giỏ hàng đang bị chống!');
                     }
                 },
                 error: function(mess) {

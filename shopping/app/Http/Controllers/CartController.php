@@ -95,7 +95,6 @@ class CartController extends Controller
         }
         return View('client.product-cart',['data'=>$data,'totalMoney'=>$totalMoney,'totalCount'=>$totalCount]);
     }
-
     public function infocart(){
         $data = Session::get('cart');
         $totalMoney = 0;

@@ -38,36 +38,33 @@
                         <thead>
                             <tr>
                                 <th>Họ tên</th>
-                                <th>Email</th>
                                 <th>Điện thoại</th>
                                 <th>Địa chỉ</th>
                                 <th>Tổng tiền</th>
                                 <th>Hình thức</th>
                                 <th>Trạng thái</th>
-                                <th style="width: 16%;">Thao tác</th>
+                                <th style="width: 13%;">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($datas as $item)
                             <tr>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->email}}</td>
                                 <td>{{ $item->phone }}</td>
                                 <td>{{ $item->address }}</td>
                                 <td>{{ number_format($item->total) }} VNĐ</td>
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success">Sửa</a>
-                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger">Xóa</a>
-                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-primary">Xem</a>
+                                    <a href="{{ route('products.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success"><i class="icon ion-android-create"></i></a>
+                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-danger"><i class="icon ion-android-delete"></i></a>
+                                    <a href="{{ route('products.delete',['id' => $item->id]) }}" class="btn btn-sm btn-primary"><i class="icon ion-eye"></i></a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <th>Họ tên</th>
-                            <th>Email</th>
                             <th>Điện thoại</th>
                             <th>Địa chỉ</th>
                             <th>Tổng tiền</th>
