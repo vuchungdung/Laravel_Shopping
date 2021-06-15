@@ -7,11 +7,11 @@
                 <i class="zmdi zmdi-minus"></i>
                 <i class="zmdi zmdi-plus"></i>
             </span>
-            <a class="cateItem" href="#">{{$key->category_name}}</a>
+            <a class="cateItem" href="/list-product/{{$key->id}}">{{$key->category_name}}</a>
             <div class="subCategory collapse" id="{{$key->id}}" aria-expanded="true" role="status">
                 @foreach($key->categoryChildren as $subItem)
                 <div class="cateTitle">
-                    <a href="#" class="cateItem">{{$subItem->category_name}}</a>
+                    <a href="/list-product/{{$key->id}}" class="cateItem">{{$subItem->category_name}}</a>
                 </div>
                 @endforeach
             </div>

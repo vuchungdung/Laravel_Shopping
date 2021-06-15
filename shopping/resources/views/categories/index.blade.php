@@ -39,8 +39,7 @@
                         <thead>
                             <tr>
                                 <th>Tên danh mục</th>
-                                <th>SEO</th>
-                                <th>Ngày tạo</th>
+                                <th style="width:14%">Ngày tạo</th>
                                 <th style="width: 12%;">Thao tác</th>
                             </tr>
                         </thead>
@@ -48,8 +47,6 @@
                             @foreach($datas as $item)
                             <tr>
                                 <td>{{ $item->category_name }}</td>
-
-                                <td>{{ $item->alias }}</td>
                                 <td>{{ date("d-m-Y", strtotime($item->created_at)) }}</td>
                                 <td>
                                     <a href="{{ route('categories.edit',['id' => $item->id]) }}" class="btn btn-sm btn-success"><i class="icon ion-android-create"></i></a>
@@ -61,13 +58,11 @@
                         <tfoot>
                             <tr>
                                 <th>Tên danh mục</th>
-                                <th>SEO</th>
-                                <th>Ngày tạo</th>
+                                <th style="width:14%">Ngày tạo</th>
                                 <th style="width: 12%;">Thao tác</th>
                             </tr>
                         </tfoot>
                     </table>
-
                 </div>
                 <!-- /.card-body -->
             </div>

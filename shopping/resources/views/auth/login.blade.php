@@ -29,9 +29,10 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Chào mừng bạn</p>
 
-      <form action="" method="post">
+      <form action="/login-admin" method="post">
+        @csrf
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Nhập tài khoản">
+          <input type="email" name="email" class="form-control" placeholder="Nhập tài khoản">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -39,7 +40,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Nhập mật khẩu">
+          <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

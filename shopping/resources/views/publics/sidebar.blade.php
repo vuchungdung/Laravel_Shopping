@@ -17,7 +17,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="/dashboard/index" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Theo dõi & Thống kê
@@ -52,7 +52,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Thông tin khách hàng
+                Doanh số
               </p>
             </a>
           </li>

@@ -220,7 +220,7 @@
                     phone
                 },
                 success: function(res) {
-                    if (res==true) {
+                    if (res) {
                         $('#show_cart').empty();
                         toastr.success('Gửi đơn hàng thành công!');
                         $('input[name="name"]').val("");

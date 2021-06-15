@@ -39,6 +39,10 @@ class HomeController extends Controller
                             ['homeflag', '=', "checked"],
                             ['categoryId', '=', 73],
                             ['isdiscount', '=', "checked"]])->get();
+        $list_sale = $this->product->where([
+                            ['homeflag','=',"checked"],
+                            ['isdiscount','=',"checked"]
+                            ])->get();
         return view('home',['datas'=>$datas,
                             'living_room_hot'=>$living_room_hot,
                             'living_room_new'=>$living_room_new,
@@ -47,7 +51,8 @@ class HomeController extends Controller
                             'kitchen_room_new'=>$kitchen_room_new,
                             'kitchen_room_hot'=>$kitchen_room_hot,
                             'living_room'=>$living_room,
-                            'kitchen_room'=>$kitchen_room]);
+                            'kitchen_room'=>$kitchen_room,
+                            'list_sale'=>$list_sale]);
     }
     public function detail($id){
         $item = $this->product->join('product_owners', 'products.ownerId', '=', 'product_owners.id')
@@ -56,18 +61,19 @@ class HomeController extends Controller
                               ->find($id);
         $datas = $this->product->where([
                 ['categoryId', '=', $item->categoryId],
-                ['id', '<>', $item->id]])->get();
+                ['id', '<>', $item->id]])->take(3)->get();
         $categories = Category::where('parentId',0)->get();
         return view('client.detail',['item'=>$item,'datas'=>$datas,'categories'=>$categories]);
     }
     public function list($id){
-        if($id == null){
-            $datas = $this->product->paginate(18);
+        if($id == 0){
+            $datas = $this->product->paginate(12);
+            $categories = Category::where('parentId',0)->get();
         }
         else{
-            $datas = $this->prpduct->where('categoryId','=',$id)->paginate(18);
+            $datas = $this->product->where('categoryId','=',$id)->paginate(12);
+            $categories = Category::where('parentId',0)->get();
         }
-        $categories = Category::where('parentId',0)->get();
         return view('client.list',['categories'=>$categories,'datas'=>$datas]);
     }
 }

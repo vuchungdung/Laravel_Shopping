@@ -1,5 +1,4 @@
 <header>
-
     <!-- header desktop -->
     <div class="header-top d-xs-none ">
         <div class="container">
@@ -21,7 +20,7 @@
                                 <a href="#" class="parent">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="/list-product" class="parent">Sản phẩm</a>
+                                <a href="/list-product/0" class="parent">Sản phẩm</a>
                             </li>
                             <li>
                                 <a href="contact.html" class="parent">Liên hệ</a>
@@ -48,6 +47,45 @@
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </a>
                         </div>
+                        <div id="acount" class="collapse">
+                            <div class="account-list-content">
+                                @if(Session::get('customer'))
+                                <div>
+                                    <a>
+                                        <span>Xin chào: {{Session::get('customer')[0]->name}}</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="check-out" href="/order-info" rel="nofollow" title="Checkout">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                        <span>Thông tin đặt hàng</span>
+                                    </a>
+                                </div>
+                                @endif
+                                @if(!Session::get('customer'))
+                                <div>
+                                    <a class="login" href="/login" rel="nofollow" title="Log in to your customer account">
+                                        <i class="fa fa-sign-in"></i>
+                                        <span>Đăng nhập</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a class="register" href="/register" rel="nofollow" title="Register Account">
+                                        <i class="fa fa-user"></i>
+                                        <span>Đăng ký</span>
+                                    </a>
+                                </div>
+                                @endif
+                                @if(Session::get('customer'))
+                                <div>
+                                    <a href="/logout">
+                                        <i class="fa fa-sign-in"></i>
+                                        <span>Đăng xuất</span>
+                                    </a>
+                                </div>
+                                @endif                             
+                            </div>
+                        </div>
                     </div>
                     <div class="desktop_cart">
                         <div class="blockcart block-cart cart-preview tiva-toggle">
@@ -66,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

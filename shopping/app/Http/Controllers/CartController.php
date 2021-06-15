@@ -32,6 +32,7 @@ class CartController extends Controller
                         'product_img' => $val['product_img'],
                         'product_count' => $val['product_count']+ $request->count,
                         'product_price' => $val['product_price'],
+                        'product_qty' => $product['quatity']
                     );
                     Session::put('cart',$cart);
                 }
@@ -44,6 +45,7 @@ class CartController extends Controller
                     "product_price" => $product['price'],
                     "product_img" => $product['images'],
                     "product_count" => $request->count,
+                    "product_qty" => $product['quatity']
                 );
                 Session::put('cart',$cart);
             }
@@ -56,6 +58,7 @@ class CartController extends Controller
                 "product_price" => $product['price'],
                 "product_img" => $product['images'],
                 "product_count" => $request->count,
+                "product_qty" => $product['quatity']
             );  
             Session::put('cart',$cart);          
         }
@@ -108,6 +111,59 @@ class CartController extends Controller
         }
         else{
             return View('client.info-cart',['totalMoney'=>0,'totalCount'=>0]);
+        }
+    }
+    public function delete_cart($session_id){
+        $cart = Session::get('cart');
+        if($cart==true){
+            foreach($cart as $key => $val){
+                if($val['session_id']==$session_id){
+                    unset($cart[$key]);
+                }
+            }
+            Session::put('cart',$cart);
+            return redirect()->back()->with('message','Xóa sản phẩm thành công');
+
+        }else{
+            return redirect()->back()->with('message','Xóa sản phẩm thất bại');
+        }
+
+    }
+    public function update_cart(Request $request){
+        $data = $request->all();
+        $cart = Session::get('cart');
+        if($cart==true){
+            $message = '';
+
+            foreach($data as $key => $qty){
+                $i = 0;
+                if($key <> "_token"){
+                    foreach($cart as $session => $val){
+                        $i++;    
+                        if($val['session_id']==$key && (integer)$qty<(integer)$cart[$session]['product_qty']){
+    
+                            $cart[$session]['product_count'] = $qty;
+                            $message.='<p style="color:blue">'.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thành công</p>';
+    
+                        }elseif($val['session_id']==$key && (integer)$qty>(integer)$cart[$session]['product_qty']){
+                            $message.='<p style="color:red">'.$i.') Cập nhật số lượng :'.$cart[$session]['product_name'].' thất bại</p>';
+                        }
+    
+                    }
+                }
+            }
+
+            Session::put('cart',$cart);
+            return redirect()->back()->with('message',$message);
+        }else{
+            return redirect()->back()->with('message','Cập nhật số lượng thất bại');
+        }
+    }
+    public function delete_all_product(){
+        $cart = Session::get('cart');
+        if($cart==true){
+            Session::forget('cart');
+            return redirect()->back()->with('message','Xóa hết giỏ thành công');
         }
     }
 }

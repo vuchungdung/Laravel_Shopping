@@ -13,6 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @yield('title')
 
   <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{{ asset('client_template/libs/alert/toastr.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin_template/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -21,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <link rel="stylesheet" href="{{ asset('admin_template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin_template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-
+  <link rel="stylesheet" href="{{ asset('admin_template/plugins/toastr/toastr.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin_template/dist/css/adminlte.min.css') }}">
   <link rel="stylesheet" href="{{ asset('admin_template/plugins/summernote/summernote-bs4.css') }}">
   <!-- Google Font: Source Sans Pro -->
@@ -59,7 +60,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="{{ asset('admin_template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
   <!-- AdminLTE App -->
   <script src="{{ asset('admin_template/dist/js/adminlte.min.js') }}"></script>
+  <script src="{{ asset('admin_template/plugins/toastr/toastr.min.js') }}"></script>
   <script src="{{ asset('admin_template/plugins/summernote/summernote-bs4.min.js') }}"></script>
+  <script src="{{ asset('client_template/libs/alert/toastr.min.js') }}"></script>
   <script>
     $(function() {
       $("#example1").DataTable({

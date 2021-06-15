@@ -17,21 +17,18 @@ use Illuminate\Http\Request;
 
 Route::get('/', action:'App\Http\Controllers\HomeController@index');
 
-Route::get('/login', action:'App\Http\Controllers\AuthController@login_index');
-Route::post('/login', action:'App\Http\Controllers\AuthController@login_post');
-
-Route::get('/register', action:'App\Http\Controllers\AuthController@register_index');
-Route::post('/register', action:'App\Http\Controllers\AuthController@register_post');
+Route::get('/login-admin', action:'App\Http\Controllers\AuthController@login_index');
+Route::post('/login-admin', action:'App\Http\Controllers\AuthController@login_post');
 
 Route::get('/detail/{id}', action:'App\Http\Controllers\HomeController@detail');
 Route::get('/admin', function () {
-    // $username = Session::get('user_admin');
-    // if(!$username){
-    //     return redirect('/login');
-    // }
-    // else{
-    //     return view('admin');
-    // }
+    $user = Session::get('user_admin');
+    if(!$user){
+        return redirect('/login-admin');
+    }
+    else{
+        return view('admin');
+    }
     return view('admin');
 });
 
@@ -39,13 +36,37 @@ Route::post('/add-to-cart', action:'App\Http\Controllers\CartController@savecart
 Route::get('/load-cart', action:'App\Http\Controllers\CartController@loadcart');
 Route::get('/cart-detail', action:'App\Http\Controllers\CartController@detailcart');
 Route::get('/info-cart', action:'App\Http\Controllers\CartController@infocart');
-Route::get('/info-cart', action:'App\Http\Controllers\CartController@infocart');
-Route::get('/list-product', action:'App\Http\Controllers\HomeController@list');
+Route::get('/list-product/{id}', action:'App\Http\Controllers\HomeController@list');
+Route::get('/login', action:'App\Http\Controllers\CustomerController@login_index');
+Route::post('/login-post', action:'App\Http\Controllers\CustomerController@login_post');
+Route::post('/update-cart', action:'App\Http\Controllers\CartController@update_cart');
+Route::get('/delete-p/{session_id}', action:'App\Http\Controllers\CartController@delete_cart');
+Route::get('/delete-all-p', action:'App\Http\Controllers\CartController@delete_all_product');
 
+Route::get('/register', action:'App\Http\Controllers\CustomerController@register_index');
+Route::get('/user-order', action:'App\Http\Controllers\CustomerController@get_order');
+Route::post('/register-post', action:'App\Http\Controllers\CustomerController@register_post');
+
+Route::get('/logout', action:'App\Http\Controllers\CustomerController@logout');
+Route::get('/dashboard/index', action:'App\Http\Controllers\DashboardController@index');
+Route::post('/dashboard/get', action:'App\Http\Controllers\DashboardController@get');
+
+Route::get('/user-info', action:'App\Http\Controllers\CustomerController@userinfo');
+Route::get('/order-info', action:'App\Http\Controllers\CustomerController@orderinfo');
+Route::get('/order-old', action:'App\Http\Controllers\CustomerController@orderold');
+Route::get('/order-old/{id}', action:'App\Http\Controllers\CustomerController@trash');
 Route::prefix('orders')->group(function () {
     Route::post('/save-order', [
     	'as'=>'orders.save',
     	'uses'=>'App\Http\Controllers\OrderController@save'
+    ]);
+    Route::post('/change-status', [
+    	'as'=>'orders.status',
+    	'uses'=>'App\Http\Controllers\OrderController@change'
+    ]);
+    Route::get('/export-to-word/{id}', [
+    	'as'=>'orders.export',
+    	'uses'=>'App\Http\Controllers\OrderController@exporttoword'
     ]);
     Route::get('/index', [
     	'as'=>'orders.index',

@@ -91,4 +91,5 @@ class CategoryController extends Controller
 			return redirect('/categories/index')->with('status', 'Cập nhật thất bại!');
 		}
 	}
+	
 }

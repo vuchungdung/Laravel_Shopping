@@ -38,7 +38,7 @@
     <table width="100%" border="0" cellpadding="10" bgcolor="#ffffff" style="padding-bottom:10px">
         <tbody>
             <tr>
-                <td style="font-size:13px;color:#333;padding:10px 10px 0 10px">Chào anh/chị <b>{{$email['name']}}</b>,</td>
+                <td style="font-size:13px;color:#333;padding:10px 10px 0 10px">Chào anh/chị <b>{{$email['name']}}</b>,Đơn hàng của anh/ chị đã được tiếp nhận</td>
             </tr>
         </tbody>
     </table>

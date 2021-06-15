@@ -16,7 +16,8 @@ class Order extends Model
         'phone',
         'status',
         'total',
-        'payments'
+        'payments',
+        'cusId'
     ];
 
     protected $table ='orders';

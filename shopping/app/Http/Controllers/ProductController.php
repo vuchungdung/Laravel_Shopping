@@ -35,15 +35,6 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-        if(!$request->has('hotflag')){
-            $request->request->add(['hotflag'=>'']);
-        }
-        if(!$request->has('homeflag')){
-            $request->request->add(['homeflag'=>'']);
-        }
-        if(!$request->has('isdiscount')){
-            $request->request->add(['isdiscount'=>'']);
-        }
         if (!$request->hasFile('images')) {
             return "Mời chọn file cần upload";
         }
@@ -58,9 +49,9 @@ class ProductController extends Controller
             'ownerId' => $request->ownerId,
             'content' => $request->content,
             'viewcount' => 1,
-            'hotflag' => $request->hotflag = "on" ? '' : 'checked',
-            'homeflag' => $request->homeflag = "on" ? '' : 'checked',
-            'isdiscount' => $request->isdiscount = "on" ? '' : 'checked',
+            'hotflag' => $request->hotflag = "on" ? 'checked' : '',
+            'homeflag' => $request->homeflag = "on" ? 'checked' : '',
+            'isdiscount' => $request->isdiscount = "on" ? 'checked' : '',
             'discount' => $request->discount,
             'description' => $request->description,
             'alias' => Str::slug($request->name, '-')
@@ -96,19 +87,9 @@ class ProductController extends Controller
     public function saveedit($id,Request $request)
     {
         try{
-            if(!$request->has('hotflag')){
-                $request->request->add(['hotflag'=>'']);
-            }
-            if(!$request->has('homeflag')){
-                $request->request->add(['homeflag'=>'']);
-            }
-            if(!$request->has('isdiscount')){
-                $request->request->add(['isdiscount'=>'']);
-            }
             if (!$request->hasFile('images')) {
                 return "Mời chọn file cần upload";
             }
-            dd($request);
             $image = $request->file('images');
             $storedPath = $image->move('images', $image->getClientOriginalName());
             $this->product->find($id)->update([
