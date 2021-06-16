@@ -70,7 +70,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         "autoWidth": false,
         language: {
           url: '//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json'
-        }
+        },
+        "ordering": false
       });
       $('#example2').DataTable({
         "paging": true,

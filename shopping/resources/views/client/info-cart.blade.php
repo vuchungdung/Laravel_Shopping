@@ -93,7 +93,7 @@
                                                             <input class="form-control" name="name" type="text" placeholder="Nhập họ tên khách hàng" required>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <input class="form-control" name="email" type="email" placeholder="Nhập địa chỉ nhận hàng" required>
+                                                            <input class="form-control" name="email" type="email" placeholder="Nhập địa chỉ email" required>
                                                         </div>
                                                         <div class="form-group row">
                                                             <input class="form-control" name="phone" type="text" placeholder="Nhập số điện thoại khách hàng" required>

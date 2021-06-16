@@ -109,7 +109,8 @@
                 <input type="radio" name="status" value="1"> Đã xác nhận </br>
                 <input type="radio" name="status" value="2"> Đang giao </br>
                 <input type="radio" name="status" value="3"> Đã thanh toán</br>
-                <input type="radio" name="status" value="3"> Đã hủy
+                <input type="radio" name="status" value="4"> Đã hủy </br>
+                <input type="radio" name="status" value="5"> Hoàn thành </br>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>

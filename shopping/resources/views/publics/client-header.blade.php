@@ -31,8 +31,8 @@
 
                 <!-- search-->
                 <div id="search_widget" class="col-sm-6 col-md-5 align-items-center justify-content-end d-flex">
-                    <form method="get" action="http://demo1.cloodo.com/html/furnitica/index.html">
-                        <input type="text" name="s" value="" placeholder="Search ..." class="ui-autocomplete-input" autocomplete="off">
+                    <form method="get" action="/search">
+                        <input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm" class="ui-autocomplete-input" autocomplete="onl">
                         <button type="submit">
                             <i class="fa fa-search"></i>
                         </button>

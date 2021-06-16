@@ -51,10 +51,11 @@ Route::get('/logout', action:'App\Http\Controllers\CustomerController@logout');
 Route::get('/dashboard/index', action:'App\Http\Controllers\DashboardController@index');
 Route::post('/dashboard/get', action:'App\Http\Controllers\DashboardController@get');
 
+Route::get('/search', action:'App\Http\Controllers\HomeController@search');
+
 Route::get('/user-info', action:'App\Http\Controllers\CustomerController@userinfo');
-Route::get('/order-info', action:'App\Http\Controllers\CustomerController@orderinfo');
-Route::get('/order-old', action:'App\Http\Controllers\CustomerController@orderold');
-Route::get('/order-old/{id}', action:'App\Http\Controllers\CustomerController@trash');
+Route::get('/order-info', action:'App\Http\Controllers\CustomerController@get_order');
+Route::get('/order-trash/{id}', action:'App\Http\Controllers\OrderController@trash');
 Route::prefix('orders')->group(function () {
     Route::post('/save-order', [
     	'as'=>'orders.save',
@@ -100,6 +101,34 @@ Route::prefix('categories')->group(function () {
     	'uses'=>'App\Http\Controllers\CategoryController@delete'
     ]);
 });
+
+Route::prefix('statistics')->group(function () {
+    Route::get('/index', [
+    	'as'=>'statistics.index',
+    	'uses'=>'App\Http\Controllers\StatisticalController@index'
+    ]);
+    Route::get('/create', [
+    	'as'=>'statistics.create',
+    	'uses'=>'App\Http\Controllers\StatisticalController@create'
+    ]);
+    Route::post('/save', [
+    	'as'=>'statistics.save',
+    	'uses'=>'App\Http\Controllers\StatisticalController@save'
+    ]);
+    Route::get('/edit/{id}', [
+    	'as'=>'statistics.edit',
+    	'uses'=>'App\Http\Controllers\StatisticalController@edit'
+    ]);
+    Route::post('/saveedit/{id}', [
+    	'as'=>'statistics.saveedit',
+    	'uses'=>'App\Http\Controllers\StatisticalController@saveedit'
+    ]);
+    Route::get('/delete/{id}', [
+    	'as'=>'statistics.delete',
+    	'uses'=>'App\Http\Controllers\StatisticalController@delete'
+    ]);
+});
+
 Route::prefix('products')->group(function () {
     Route::get('/index', [
     	'as'=>'products.index',

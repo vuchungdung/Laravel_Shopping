@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Statistical extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_statistical',
+        'order_date',
+        'profit',
+        'quantity',
+        'sales',
+        'total_order'
+    ];
+
+    protected $table ='statisticals';
 }

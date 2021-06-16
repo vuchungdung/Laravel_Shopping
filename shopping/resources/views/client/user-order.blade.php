@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
@@ -8,6 +7,7 @@
 
 
 <!-- Mirrored from demo1.cloodo.com/html/furnitica/user-acount.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Feb 2021 10:19:36 GMT -->
+
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
@@ -73,42 +73,46 @@
                     <div id="main">
                         <h1 class="title-page">Đơn hàng đang đặt</h1>
                         <div class="content" id="block-history">
+                            @if(session()->has('message'))
+                            <div class="alert alert-success">
+                                {!! session()->get('message') !!}
+                            </div>
+                            @elseif(session()->has('error'))
+                            <div class="alert alert-danger">
+                                {!! session()->get('error') !!}
+                            </div>
+                            @endif
                             <table class="std table">
                                 <thead>
                                     <tr>
-                                        <th style="padding-left: 14px;">Tên sản phẩm</th>
-                                        <th style="padding-left: 14px;">Số lượng mua</th>
-                                        <th style="padding-left: 14px;">Đơn giá</th>
+                                        <th style="padding-left: 14px;">Mã hóa đơn</th>
                                         <th style="padding-left: 14px;">Ngày đặt</th>
                                         <th style="padding-left: 14px;">Thành tiền</th>
+                                        <th style="padding-left: 14px;">Trạng thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($order as $value)
-                                    <tr>
-                                        <td>{{$value->name}}</td>
-                                        <td>{{$value->quantity}}</td>
-                                        <td>{{number_format($value->price)}} đồng</td>
-                                        <td>{{ date("d-m-Y", strtotime($value->created_at)) }}</td>
-                                        <td>{{number_format((integer)$value->price*(integer)$value->quantity)}}</td>
-                                    </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="5">Trạng thái:
-                                        @if($order[0]->status == 0)
-                                        <span style="font-weight:700;color:red">Chờ</span>
-                                        @elseif($order[0]->status == 1)
-                                        <span style="font-weight:700;color:blue">Xác nhận</span>
-                                        @elseif($order[0]->status == 2)
-                                        <span style="font-weight:700;color:green">Đang giao</span>
-                                        @elseif($order[0]->status == 3)
-                                        <span style="font-weight:700;color:black">Thanh toán</span>
-                                        @elseif($order[0]->status == 4)
-                                        <span style="font-weight:700;color:yellow">Đã hủy</span>
-                                        @endif 
-                                        <a style="color: black;font-weight:600; padding-left:50px" href="/user-order/{{$order[0]->id}}">Hủy đơn hàng</a>
-                                        </td>
-                                    </tr>
+                                    @if($order->count() > 0)
+                                        @foreach($order as $value)
+                                        <tr>
+                                            <td>{{$value->id}}</td>
+                                            <td>{{ date("d-m-Y", strtotime($value->created_at)) }}</td>
+                                            <td>{{number_format($value->total)}} đồng</td>
+                                            <td>
+                                                @if($value->status == 0)
+                                                <span style="font-weight:700;color:red">Chờ</span>
+                                                @elseif($value->status == 1)
+                                                <span style="font-weight:700;color:blue">Xác nhận</span>
+                                                @elseif($value->status == 2)
+                                                <span style="font-weight:700;color:green">Đang giao</span>
+                                                @elseif($value->status == 3)
+                                                <span style="font-weight:700;color:black">Thanh toán</span>
+                                                @endif
+                                                <a style="color: black;font-weight:600; padding-left:50px" href="/order-trash/{{$order[0]->id}}">Hủy đơn hàng</a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
 
@@ -118,33 +122,28 @@
                             <table class="std table">
                                 <thead>
                                     <tr>
-                                        <th style="padding-left: 14px;">Tên sản phẩm</th>
-                                        <th style="padding-left: 14px;">Số lượng mua</th>
-                                        <th style="padding-left: 14px;">Đơn giá</th>
+                                        <th style="padding-left: 14px;">Mã hóa đơn</th>
                                         <th style="padding-left: 14px;">Ngày đặt</th>
                                         <th style="padding-left: 14px;">Thành tiền</th>
+                                        <th style="padding-left: 14px;">Trạng thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($order_trash->count()>0)
-                                    @foreach($order_trash as $value)
-                                    <tr>
-                                        <td>{{$value->name}}</td>
-                                        <td>{{$value->quantity}}</td>
-                                        <td>{{number_format($value->price)}} đồng</td>
-                                        <td>{{ date("d-m-Y", strtotime($value->created_at)) }}</td>
-                                        <td>{{number_format((integer)$value->price*(integer)$value->quantity)}}</td>
-                                    </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="5">Trạng thái:
-                                        @if($order_trash[0]->status == 5)
-                                        <span style="font-weight:700;color:orange">Hoàn thành</span>
-                                        @elseif($order_trash[0]->status == 4)
-                                        <span style="font-weight:700;color:yellow">Đã hủy</span>
-                                        @endif 
-                                        </td>
-                                    </tr>
+                                    @if($order_trash->count() > 0)
+                                        @foreach($order_trash as $value1)
+                                        <tr>
+                                            <td>{{$value1->id}}</td>
+                                            <td>{{ date("d-m-Y", strtotime($value1->created_at)) }}</td>
+                                            <td>{{number_format($value1->total)}} đồng</td>
+                                            <td>
+                                                @if($value1->status == 5)
+                                                <span style="font-weight:700;color:orange">Thanh toán</span>
+                                                @elseif($value1->status == 4)
+                                                <span style="font-weight:700;color:yellow">Đã hủy</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     @endif
                                 </tbody>
                             </table>
@@ -195,4 +194,5 @@
 
 
 <!-- Mirrored from demo1.cloodo.com/html/furnitica/user-acount.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Feb 2021 10:19:37 GMT -->
+
 </html>

@@ -105,4 +105,12 @@ class OrderController extends Controller
         $templateProcessor->saveAs($fileName . '.docx');
         return response()->download($fileName . '.docx')->deleteFileAfterSend(true);
 	}
+
+    public function trash($id)
+    {
+        $this->order->find($id)->update([
+            'status'=> 4
+        ]);
+        return redirect()->back()->with('message','Hủy đơn hàng thành công!');
+    }
 }

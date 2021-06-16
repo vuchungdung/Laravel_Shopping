@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $datas = $this->product->orderBy('created_at', 'asc')->get();
+        $datas = $this->product->orderBy('created_at', 'desc')->get();
         return view('products.index', ['datas' => $datas]);
     }
 
@@ -100,11 +100,11 @@ class ProductController extends Controller
                 'quatity' => $request->quatity,
                 'ownerId' => $request->ownerId,
                 'viewcount' => 1,
-                'hotflag' => $request->hotflag = "on" ? '' : 'checked',
-                'homeflag' => $request->homeflag = "on" ? '' : 'checked',
+                'hotflag' => $request->hotflag = "on" ? 'checked' : '',
+                'homeflag' => $request->homeflag = "on" ? 'checked' : '',
                 'description' => $request->description,
                 'content' => $request->content,
-                'isdiscount' => $request->isdiscount = "on" ? '' : 'checked',
+                'isdiscount' => $request->isdiscount = "on" ? 'checked' : '',
                 'discount' => $request->discount,
                 'alias' => Str::slug($request->name, '-')
             ]);

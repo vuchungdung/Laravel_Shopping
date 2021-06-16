@@ -55,21 +55,17 @@ class CustomerController extends Controller
     }
     public function get_order(){
         $user = Session::get('customer');
-        $order = $this->order->join('order_details','orders.id','=','order_details.orderid')
-                            ->join('customers','orders.cusId','=','customers.id')
+        $order = $this->order->join('customers','orders.cusId','=','customers.id')
                             ->where([['orders.cusId','=', $user[0]->id],['orders.status','<>','5'],['orders.status','<>','4']])
-                            ->join('products','order_details.productid','=','products.id')
-                            ->select('products.name','products.price', 'order_details.quantity','orders.created_at','orders.status')
+                            ->select('orders.created_at','orders.status','orders.id','orders.total')
                             ->get();
-        $order_trash = $this->order->join('order_details','orders.id','=','order_details.orderid')
-                            ->join('customers','orders.cusId','=','customers.id')
+        $order_trash = $this->order->join('customers','orders.cusId','=','customers.id')
                             ->where([['orders.cusId','=', $user[0]->id],
                                     ['orders.status','<>','0'],
                                     ['orders.status','<>','1'],
                                     ['orders.status','<>','2'],
                                     ['orders.status','<>','3']])
-                            ->join('products','order_details.productid','=','products.id')
-                            ->select('products.name','products.price', 'order_details.quantity','orders.created_at','orders.status')
+                            ->select('orders.created_at','orders.status','orders.id','orders.total')
                             ->get();                    
         return view('client.user-order',['order'=>$order,'order_trash'=>$order_trash]);
         

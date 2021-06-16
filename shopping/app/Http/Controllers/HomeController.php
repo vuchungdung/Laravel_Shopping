@@ -76,4 +76,9 @@ class HomeController extends Controller
         }
         return view('client.list',['categories'=>$categories,'datas'=>$datas]);
     }
+    public function search(Request $request){
+        $datas = Product::where('name','like','%'.$request->keyword.'%')->paginate(12);
+        $categories = Category::where('parentId',0)->get();
+        return view('client.list',['categories'=>$categories,'datas'=>$datas]);
+    }
 }
